@@ -1,23 +1,20 @@
 class Statement
 
-  attr_reader :transaction_log
+  attr_reader :transaction_log, :deposits, :withdrawls, :transaction_log_array
+  attr_writer :deposits, :withdrawls
 
   def initialize(transaction_log)
     @transaction_log = transaction_log
-
+    @transaction_log_array = (transaction_log[:deposits] + transaction_log[:withdrawls]).sort_by! {|i| i.count}
   end
 
   def display_log
     build_log_header
-    transaction_log.each do |key, transaction|
-      if key == :deposits
-        array.each do |transaction|
-          puts "#{transaction.date} || #{'%.2f' % transaction.amount} || || #{'%.2f' % transaction.balance}"
-        end
-      elsif key == :withdrawls
-        array.each do |transaction|
-          puts "#{transaction.date} || || #{'%.2f' % transaction.amount} || #{'%.2f' % transaction.balance}"
-        end
+    transaction_log_array.each do |transaction|
+      if transaction.is_a? Deposit
+        puts "#{transaction.date} || #{'%.2f' % transaction.amount} || || #{'%.2f' % transaction.balance}"
+      elsif transaction.is_a? Withdrawl
+        puts "#{transaction.date} || || #{'%.2f' % transaction.amount} || #{'%.2f' % transaction.balance}"
       end
     end
   end
@@ -30,3 +27,5 @@ class Statement
   end
 
 end
+
+# puts "#{transaction.date} || || #{'%.2f' % transaction.amount} || #{'%.2f' % transaction.balance}"

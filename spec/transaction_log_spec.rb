@@ -5,16 +5,22 @@ describe Transaction_log do
   Deposit_mock = Class.new
   deposit = Deposit_mock.new
   class Deposit_mock
-  def is_a?(klass)
-    Deposit >= klass
+    def is_a?(klass)
+      Deposit >= klass
+    end
+    
+    def add_count(count)
     end
   end
 
   Withdrawl_mock = Class.new
   withdrawl = Withdrawl_mock.new
   class Withdrawl_mock
-  def is_a?(klass)
-    Withdrawl >= klass
+    def is_a?(klass)
+      Withdrawl >= klass
+    end
+
+    def add_count(count)
     end
   end
 
@@ -25,6 +31,7 @@ describe Transaction_log do
     expect(transaction_log.history[:deposits]).to include deposit
     end
   end
+
 
   describe '#add_withdrawl' do
     it 'success' do

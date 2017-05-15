@@ -29,7 +29,6 @@ class Transaction_log
 
   def add_transaction_count(transaction)
     transaction.add_count(count)
-    # require 'pry'; binding.pry
     self.count += 1
   end
 
