@@ -22,7 +22,7 @@ class Transaction_log
   end
 
   def add_withdrawl(withdrawl)
-    self.history[:withdrawls] << deposit
+    self.history[:withdrawls] << withdrawl
   end
 
 end

@@ -1,7 +1,7 @@
 require 'Withdrawl'
 
 describe Withdrawl do
-  subject(:withdrawl) {described_class.new(10)}
+  subject(:withdrawl) {described_class.new(10, 0)}
 
   describe '#initialize' do
 
@@ -14,7 +14,7 @@ describe Withdrawl do
     end
 
     it "throws error when given a non positive amount" do
-      expect{(Withdrawl.new(-1))}.to raise_error "amount must be positive"
+      expect{(Withdrawl.new(-1, 0))}.to raise_error "amount must be positive"
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'deposit'
 
 describe Deposit do
-  subject(:deposit) {described_class.new(10)}
+  subject(:deposit) {described_class.new(10,0)}
 
   describe '#initialize' do
 
@@ -14,7 +14,7 @@ describe Deposit do
     end
 
     it "throws error when given a non positive amount" do
-      expect{(Deposit.new(-1))}.to raise_error "amount must be positive"
+      expect{(Deposit.new(-1, 0))}.to raise_error "amount must be positive"
     end
   end
 end

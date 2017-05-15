@@ -20,17 +20,22 @@ class User
     process_withdrawl(amount)
   end
 
+  # use Statement.new(transaction_log) as params here
+  def print_statement(statement)
+    statement.display_log
+  end
+
   private
 
   attr_writer :balance
 
   def process_deposit(amount)
-    deposit = Deposit.new(amount)
+    deposit = Deposit.new(amount, balance)
     self.balance += deposit.amount
   end
 
   def process_withdrawl(amount)
-    withdrawl = Withdrawl.new(amount)
+    withdrawl = Withdrawl.new(amount, balance)
     self.balance -= withdrawl.amount
   end
 
